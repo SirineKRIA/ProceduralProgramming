@@ -1,0 +1,37 @@
+vector :	STRUCT
+                x : INTEGER;
+                y : INTEGER;
+            END_STRUCT
+        
+PROCEDURE dot_product(v1, v2: vector, VAR ps: INTEGER)
+BEGIN
+    ps = v1.x * v2.x + v1.y * v2.y;
+END
+
+ALGORITHM SEARCHING_ORTHOGONAL_VECTORS
+VAR
+    i, j, len, dotPdt: INTEGER; 
+    maxLength : INTEGER := 100;
+    arrVector : ARRAY_OF vector[maxLength];
+BEGIN
+    REPEAT
+        Write("Enter vector array length");
+        Read(len);
+    UNTIL ((len > 0) AND (len <= maxLength));
+
+    FOR i FROM 0 TO (len-1) DO
+        Write("Enter vector x's");
+        Read(arrVector[i].x);
+        Write("Enter vector y's");
+        Read(arrVector[i].y);
+    END_FOR
+
+    FOR i FROM 0 TO (len-1)  DO
+        FOR j FROM 0 TO (len-1)  DO
+            dot_product(arrVector[i], arrVector[j], dotPdt);
+            IF (dotPdt = 0) THEN
+                Write(arrVector[i], "and", arrVector[j], "are orthogonal");
+            END_IF
+        END_FOR
+    END_FOR
+END
