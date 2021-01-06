@@ -17,7 +17,7 @@ BEGIN
     REPEAT
         Write("Enter vector array length");
         Read(len);
-    UNTIL ((len > 0) AND (len <= maxLength));
+    UNTIL ((len <= 0) AND (len >= maxLength));
 
     FOR i FROM 0 TO (len-1) DO
         Write("Enter vector x's");
